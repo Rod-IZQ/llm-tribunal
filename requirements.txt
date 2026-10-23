@@ -5,4 +5,4 @@ pydantic==2.14.1        # WorkerAnswer / Verdict validation
 python-dotenv==1.2.4    # load API keys from .env
 tenacity==9.2.1         # retry/backoff on 429s and timeouts
 rich==15.0.0            # terminal tables and verdict output
-pyyaml                  # reads config.yaml
+pyyaml                  # reads bias_suite.yaml and config.yaml

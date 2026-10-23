@@ -7,6 +7,7 @@ then confirm or reject each one with real tests before hard-coding anything.
 
 Run from the AI_orchestrator folder:
     python discovery/self_report.py
+    python discovery/self_report.py --skip=local      # leave out a slow witness
 
 Writes (UTF-8, no console encoding issues):
     runs/self_report_<timestamp>.json   structured, feeds the next test step
@@ -129,8 +130,20 @@ async def main() -> None:
     safe_console_output()
     console = Console()
     witnesses = list(build_witnesses().values())
-    console.print(f"[bold]Asking {len(witnesses)} witnesses about their own biases…[/bold]")
-    results = await asyncio.gather(*(ask_self(w) for w in witnesses))
+    skip = {a.removeprefix("--skip=") for a in sys.argv[1:] if a.startswith("--skip=")}
+    witnesses = [w for w in witnesses if w.id not in skip]
+    console.print(f"[bold]Asking {len(witnesses)} witnesses about their own biases…[/bold] "
+                  f"(long answers; local models can take a few minutes)")
+
+    async def timed(w):
+        start = asyncio.get_running_loop().time()
+        r = await ask_self(w)
+        secs = asyncio.get_running_loop().time() - start
+        mark = f"[red]✗ {r['error']}[/red]" if r["error"] else f"[green]✓ {len(r['biases'])} claims[/green]"
+        console.print(f"  {w.id:13} {mark}  ({secs:.0f}s)")
+        return r
+
+    results = await asyncio.gather(*(timed(w) for w in witnesses))
 
     stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     out = ROOT / "runs"

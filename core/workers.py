@@ -94,7 +94,7 @@ def build_witnesses() -> dict[str, Witness]:
         Witness("local", guess_family(local), f"ollama_chat/{local}", None,
                 api_base=_env("OLLAMA_API_BASE", "http://localhost:11434"), timeout=120.0),
         Witness("ollama_cloud", guess_family(cloud), cloud, "OLLAMA_API_KEY",
-                api_base="https://ollama.com", timeout=60.0),
+                api_base="https://ollama.com", timeout=120.0),
     ]
     return {w.id: w for w in witnesses}
 

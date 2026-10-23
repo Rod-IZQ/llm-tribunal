@@ -1,8 +1,13 @@
+# DESIGN VALUES, NOT READ BY THE CODE YET.
+# Today the live settings come from .env and constants in core/*.py.
+# This file records the target configuration from TESTIMONY_ORDER.md §6;
+# wiring it in is on the roadmap (see PLAN.md).
+
 testimony:
   mode: parallel
   quorum: 2
   soft_deadline_s: 20
-  timeout_s: {default: 30, local: 120}
+  timeout_s: {default: 30, local: 120, ollama_cloud: 120}
   retries: 2
 
 exhibits:
