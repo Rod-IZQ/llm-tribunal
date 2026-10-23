@@ -166,13 +166,3 @@ config.yaml         design values for features still in progress
 - **Agreement isn't proof.** The judge is instructed accordingly, but a unanimous wrong answer can still get through.
 - **Free tiers change without notice.** Models get retired and limits move. Run `probe.py --list-free` when something stops working.
 
-## Roadmap
-
-Designed (see `TESTIMONY_ORDER.md`) but not built yet:
-
-- Soft deadline: close testimony once a quorum answers and 20 s have passed
-- Priority tiers for batch runs, so scarce free quotas are saved for questions where witnesses disagree
-- `--double-check`: judge twice with reversed order and flag order-sensitive verdicts
-- Applying measured `confidence_scale` profiles before the judge sees confidence
-- `--file` option to send a source file (e.g. a `.py` with formulas) for review
-- Optional second round where witnesses see each other's anonymized answers
