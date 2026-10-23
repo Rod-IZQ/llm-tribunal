@@ -1,0 +1,21 @@
+testimony:
+  mode: parallel
+  quorum: 2
+  soft_deadline_s: 20
+  timeout_s: {default: 30, local: 120}
+  retries: 2
+
+exhibits:
+  shuffle: true
+  log_seed: true
+  double_check: false   # --double-check flag turns it on
+
+tiers:
+  1: [local, groq, gemini]
+  2: [ollama_cloud, mistral]
+  3: [openrouter]
+
+judge:
+  default: claude-haiku-5-5
+  escalate_to: claude-opus-5-5
+  escalate_when: {split: true, confidence_below: 0.5}

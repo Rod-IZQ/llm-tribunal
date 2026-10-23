@@ -1,0 +1,19 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Run logs (may contain prompts and answers)
+runs/
+
+# Editor / OS clutter
+.vscode/
+Thumbs.db
+.DS_Store

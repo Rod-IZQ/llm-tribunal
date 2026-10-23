@@ -1,0 +1,8 @@
+# Multi-Agent Council — pinned dependencies (Python 3.11+)
+litellm==1.106.2        # one interface to every free worker
+anthropic==2.2.0        # Claude judge call
+pydantic==2.14.1        # WorkerAnswer / Verdict validation
+python-dotenv==1.2.4    # load API keys from .env
+tenacity==9.2.1         # retry/backoff on 429s and timeouts
+rich==15.0.0            # terminal tables and verdict output
+pyyaml                  # reads config.yaml
